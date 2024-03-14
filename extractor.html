@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <object id="svg" type="image/svg+xml" data="svg.svg" onload="main()"></object>
+        <div id="output">
+        </div>
+
+        <script>
+            function extract(path) {
+                var length = Math.ceil(path.getTotalLength());
+                var points = new Array();
+
+                var output = document.getElementById("output");
+
+                for (var i = 0; i <= length; i += 2) {
+                    var point = path.getPointAtLength(i);
+                    points.push([point.x, point.y]);
+
+                    var pair = "(" + point.x + ", " + point.y + ")";
+
+                    console.log(pair);
+                    output.innerHTML += pair + " ";
+                }
+
+                return points;
+            }
+
+            function main() {
+                var svg = document.getElementById("svg");
+                var doc = svg.contentDocument; /* needs server to work - security reason */
+                var path = doc.getElementById("path"); /* may need to add to <path> */
+
+                points = extract(path);
+                jason = new Object();
+                jason.coords = points;
+
+                console.log(jason);
+                /* right click => temp1 => copy(JSON.stringify(temp1)) */
+            }
+        </script>
+    </body>
+</html>
