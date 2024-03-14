@@ -12,7 +12,7 @@
 
                 var output = document.getElementById("output");
 
-                for (var i = 0; i <= length; i += 2) {
+                for (var i = 0; i <= length; i += 8) {
                     var point = path.getPointAtLength(i);
                     points.push([point.x, point.y]);
 
@@ -27,6 +27,11 @@
 
             function main() {
                 var svg = document.getElementById("svg");
+
+                /* set to image dimensions for fitting */
+                svg.setAttribute("width", "600px");
+                svg.setAttribute("height", "550px");
+
                 var doc = svg.contentDocument; /* needs server to work - security reason */
                 var path = doc.getElementById("path"); /* may need to add to <path> */
 
